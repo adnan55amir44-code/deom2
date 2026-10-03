@@ -46,7 +46,7 @@ app.get("/api/weather", async (req, res) => {
 function createMcpServer() {
   const server = new McpServer({
     name: "mcp-weather-server",
-    version: "1.0.0"
+    version: "1.1.0"
   });
 
   server.registerTool(
@@ -121,7 +121,9 @@ app.get("/health", (req, res) => {
   res.json({
     status: "ok",
     server: "MCP Weather Server",
-    version: "1.0.0"
+    version: "1.1.0",
+    mcpEndpoint: "/mcp",
+    transport: "Streamable HTTP"
   });
 });
 
