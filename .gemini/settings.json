@@ -1,10 +1,10 @@
 {
   "mcpServers": {
     "weather": {
-      "httpUrl": "http://localhost:3000/mcp",
+      "httpUrl": "${MCP_WEATHER_URL:-http://localhost:3000/mcp}",
       "timeout": 30000,
       "includeTools": ["get_weather"],
-      "description": "Local MCP Weather Server"
+      "description": "MCP Weather Server"
     },
     "chrome-devtools": {
       "command": "npx",
