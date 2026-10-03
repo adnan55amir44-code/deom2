@@ -1,110 +1,90 @@
-# Gemini + MCP Setup
+# Google Antigravity + MCP
 
-This project can be used with Google's Gemini CLI as an MCP client.
+This project is prepared for Google's current Antigravity MCP client.
 
-## What is connected
+## MCP servers
 
-### 1. Weather MCP
+### Weather MCP
 
-The project exposes:
-
-- `http://localhost:3000/mcp`
-- Tool: `get_weather({ city })`
-
-Gemini CLI connects to this Streamable HTTP endpoint.
-
-### 2. Chrome DevTools MCP
-
-Google's Chrome DevTools MCP can be started locally through:
-
-```bash
-npx -y chrome-devtools-mcp@latest
-```
-
-It lets an MCP-capable AI client inspect and control Google Chrome.
-
-## Run the Weather MCP locally
-
-First install dependencies:
-
-```bash
-npm install
-```
-
-Start the server:
-
-```bash
-npm start
-```
-
-The weather MCP will be available at:
+Local endpoint:
 
 ```text
 http://localhost:3000/mcp
 ```
 
-## Gemini CLI
-
-Install Gemini CLI, open this project directory, then run:
-
-```bash
-gemini
-```
-
-The project configuration is in:
+Tool:
 
 ```text
-.gemini/settings.json
+get_weather({ city })
 ```
 
-You can also add the weather server manually:
+Example request:
 
-```bash
-gemini mcp add --transport http weather http://localhost:3000/mcp
-```
+> Use the weather MCP and tell me the current weather in Dubai.
 
-Then check:
+### Chrome DevTools MCP
 
-```bash
-gemini mcp list
-```
-
-## Example prompts
-
-Ask Gemini:
-
-- "What is the current weather in Karachi?"
-- "Get the weather in Dubai using the weather MCP."
-- "Compare the current weather in Karachi and London."
-
-Gemini should use the `get_weather` MCP tool for these requests.
-
-## Google Chrome
-
-For browser automation/debugging through Chrome DevTools MCP, Gemini can use the `chrome-devtools` MCP server configured above.
-
-Example:
+The project also includes the official Chrome DevTools MCP configuration:
 
 ```text
-Open Google in Chrome and inspect the page.
+npx -y chrome-devtools-mcp@latest
 ```
 
-Important: Chrome DevTools MCP is a browser-control/debugging MCP, not a dedicated Google Search API. It can navigate and inspect Chrome pages, including Google Search.
+This lets an MCP client control and inspect Google Chrome. It is browser automation/debugging, not a separate Google Search API.
 
-## Vercel deployment
+## Antigravity configuration
 
-The Weather MCP can also be exposed through a deployed HTTPS URL. Gemini CLI supports a Streamable HTTP MCP URL through `httpUrl`.
+The MCP configuration is stored at:
 
-After deployment, replace:
-
-```json
-"httpUrl": "http://localhost:3000/mcp"
+```text
+.agents/mcp_config.json
 ```
 
-with your deployed endpoint:
+Antigravity supports remote Streamable HTTP MCP servers using the `serverUrl` property.
 
-```json
-"httpUrl": "https://YOUR-DOMAIN.vercel.app/mcp"
+### Local testing
+
+Start the Weather server:
+
+```bash
+npm install
+npm start
 ```
 
-Do not put private API keys or authentication tokens in this repository.
+Then run Antigravity and open the MCP manager with:
+
+```text
+/mcp
+```
+
+The Weather server should point to:
+
+```text
+http://localhost:3000/mcp
+```
+
+### Vercel deployment
+
+After the project is deployed, replace the local server URL in `.agents/mcp_config.json` with your real HTTPS Vercel MCP endpoint:
+
+```text
+https://YOUR-DOMAIN.vercel.app/mcp
+```
+
+Do not use a guessed deployment URL. Use the actual URL shown by Vercel after deployment.
+
+## Architecture
+
+```
+Google Antigravity
+       |
+       +---- Weather MCP
+       |       |
+       |       +---- get_weather
+       |               |
+       |              wttr.in
+       |
+       +---- Chrome DevTools MCP
+               |
+              Chrome
+```
