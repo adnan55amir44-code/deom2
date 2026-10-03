@@ -119,17 +119,23 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log("");
-  console.log("======================================");
-  console.log("        MCP WEATHER SERVER");
-  console.log("======================================");
-  console.log("");
-  console.log(`Website : http://localhost:${PORT}`);
-  console.log(`Weather : http://localhost:${PORT}/api/weather?city=Karachi`);
-  console.log(`MCP     : http://localhost:${PORT}/mcp`);
-  console.log(`Health  : http://localhost:${PORT}/health`);
-  console.log("");
-  console.log("======================================");
-  console.log("");
-});
+// Vercel uses the exported Express app.
+// Local development still uses app.listen().
+export default app;
+
+if (process.env.VERCEL !== "1") {
+  app.listen(PORT, () => {
+    console.log("");
+    console.log("======================================");
+    console.log("        MCP WEATHER SERVER");
+    console.log("======================================");
+    console.log("");
+    console.log(`Website : http://localhost:${PORT}`);
+    console.log(`Weather : http://localhost:${PORT}/api/weather?city=Karachi`);
+    console.log(`MCP     : http://localhost:${PORT}/mcp`);
+    console.log(`Health  : http://localhost:${PORT}/health`);
+    console.log("");
+    console.log("======================================");
+    console.log("");
+  });
+}
