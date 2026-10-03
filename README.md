@@ -18,7 +18,7 @@ Browser UI
    |
    +--> /api/weather --> wttr.in
    |
-Gemini CLI
+Google Antigravity
    |
    +--> /mcp --> get_weather --> wttr.in
    |
@@ -64,7 +64,7 @@ By default it connects to:
 http://localhost:3000/mcp
 ```
 
-For a deployed MCP server, set the environment variable before starting Gemini CLI.
+For a deployed MCP server, set the environment variable before starting Google Antigravity.
 
 PowerShell:
 
