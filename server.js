@@ -1,4 +1,5 @@
 import express from "express";
+import path from "node:path";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { z } from "zod";
@@ -8,7 +9,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static("public"));
+const publicDir = path.join(process.cwd(), "public");
+app.use(express.static(publicDir));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(publicDir, "index.html"));
+});
 
 app.get("/api/weather", async (req, res) => {
   try {
