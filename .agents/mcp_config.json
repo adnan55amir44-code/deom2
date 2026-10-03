@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "weather": {
+      "serverUrl": "http://localhost:3000/mcp"
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    }
+  }
+}
