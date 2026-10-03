@@ -8,7 +8,7 @@ Real-time weather web app with:
 - wttr.in weather source (no weather API key)
 - Browser Geolocation
 - Browser Text-to-Speech
-- Gemini CLI MCP configuration
+- Google Antigravity MCP configuration
 - Chrome DevTools MCP configuration
 
 ## Architecture
@@ -50,12 +50,12 @@ Health:
 http://localhost:3000/health
 ```
 
-## Gemini CLI
+## Google Antigravity
 
-Gemini CLI supports Streamable HTTP MCP servers through `httpUrl`. The project contains:
+Google Antigravity supports remote Streamable HTTP MCP servers through `httpUrl`. The project contains:
 
 ```
-.gemini/settings.json
+.Antigravity/settings.json
 ```
 
 By default it connects to:
@@ -76,7 +76,7 @@ gemini
 Then verify the MCP server:
 
 ```
-gemini mcp list
+/mcp
 ```
 
 Example prompts:
