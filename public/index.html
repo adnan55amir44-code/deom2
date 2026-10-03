@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Weather</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <main class="app">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">☁</span>
+        <div>
+          <strong>MCP Weather</strong>
+          <small>Real-Time Weather Assistant</small>
+        </div>
+      </div>
+
+      <div class="mcp-status">
+        <span class="status-dot"></span>
+        MCP Server Online
+      </div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">MCP POWERED WEATHER</p>
+
+      <h1>
+        Know the weather.
+        <span>Hear the weather.</span>
+      </h1>
+
+      <p class="hero-description">
+        Get current weather information and listen to the result using your browser's built-in voice.
+      </p>
+
+      <div class="search-box">
+        <input id="cityInput" type="text" placeholder="Enter city... e.g. Karachi" value="Karachi">
+        <button id="searchButton">
+          <span>Check Weather</span>
+          <span class="arrow">→</span>
+        </button>
+      </div>
+
+      <button id="locationButton" class="location-button">📍 Use My Location</button>
+    </section>
+
+    <section id="loading" class="loading hidden">
+      <div class="loader"></div>
+      <p>Getting current weather...</p>
+    </section>
+
+    <section id="errorBox" class="error hidden">
+      <strong>Weather Error</strong>
+      <p id="errorText"></p>
+    </section>
+
+    <section id="weatherCard" class="weather-card hidden">
+      <div class="weather-top">
+        <div>
+          <p class="label">CURRENT WEATHER</p>
+          <h2 id="locationName">Karachi</h2>
+          <p id="locationRegion">Pakistan</p>
+        </div>
+        <div id="weatherIcon" class="weather-icon">☀️</div>
+      </div>
+
+      <div class="temperature">
+        <span id="temperature">--°</span>
+        <small>°C</small>
+      </div>
+
+      <p id="description" class="description">--</p>
+
+      <div class="weather-grid">
+        <div class="info-card"><span>🌡️</span><div><small>Feels Like</small><strong id="feelsLike">--°C</strong></div></div>
+        <div class="info-card"><span>💧</span><div><small>Humidity</small><strong id="humidity">--%</strong></div></div>
+        <div class="info-card"><span>💨</span><div><small>Wind</small><strong id="wind">-- km/h</strong></div></div>
+        <div class="info-card"><span>👁️</span><div><small>Visibility</small><strong id="visibility">-- km</strong></div></div>
+        <div class="info-card"><span>☀️</span><div><small>UV Index</small><strong id="uv">--</strong></div></div>
+        <div class="info-card"><span>🧭</span><div><small>Pressure</small><strong id="pressure">-- mb</strong></div></div>
+      </div>
+
+      <div class="actions">
+        <button id="speakButton" class="speak-button">🔊 Speak Weather</button>
+        <button id="stopButton" class="stop-button">⏹ Stop Voice</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>MCP Weather • Browser TTS • No API Key Required</p>
+      <p>MCP endpoint: <code>/mcp</code></p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
